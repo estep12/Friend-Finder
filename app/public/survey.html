@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Survey</title>
-    <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS & JS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 </head>
 
@@ -19,7 +26,7 @@
         <h3>About You</h3>
         <h4>Name (Required)</h4>
         <input type="text" id="name" class="form-control" required>
-        <h4>Link to Photo (required)</h4>
+        <h4>Link to Photo (R equired)</h4>
         <input type="text" id="photo" class="form-control" required>
         <hr>
         <h3>
@@ -173,30 +180,93 @@
 
 
 
+    <div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">x</button>
+                    <h5 class="modal-title">
+                        <strong>Best Match</strong>
+                    </h5>
+
+                </div>
+                <div class="modal-body">
+                    <h2 class="match-name"></h2>
+                    <img id="match-image" src="https://pixel.nymag.com/imgs/daily/vulture/2016/07/29/29-steve-brule-check-it-out.w710.h473.jpg"
+                        alt>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+            function validateForm() {
+                var isValid = true;
+                $(".form-control").each(function () {
+                    if ($(this).val() === "") {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            };
+
+            if (validateForm()) {
+                var newFriend = {
+                    name: $("#name").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    scores: [
+                        $("#q1").val(),
+                        $("#q2").val(),
+                        $("#q3").val(),
+                        $("#q4").val(),
+                        $("#q5").val(),
+                        $("#q6").val(),
+                        $("#q7").val(),
+                        $("#q8").val(),
+                        $("#q9").val(),
+                        $("#q10").val()
+                    ]
+                };
+
+                
+
+                $.post("/api/friends", newFriend, function (data) {
+                    $("#match-name").text(data.name);
+                    $("#match-photo").attr("src", data.photo);
+                    $("#results-modal").modal("toggle");
+                });
+
+            } else{
+                alert("Please fill out all fields")
+            }
+
+                $("#name").val("")
+                $("#photo").val("")
+                $("#q1").val("")
+                $("#q2").val("")
+                $("#q3").val("")
+                $("#q4").val("")
+                $("#q5").val("")
+                $("#q6").val("")
+                $("#q7").val("")
+                $("#q8").val("")
+                $("#q9").val("")
+                $("#q10").val("")
+
+                
+
+        });
+        
+    
+
+
+    </script>
 </body>
 
 </html>
-
-<script type="text/javascript">
-
-    $(".submit").on("click", function(event){
-        event.preventDefault();
-        var newFriend = {
-            name: $("#name").val().trim(),
-            photo: $("#photo").val().trim(),
-            scores: [
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val(),
-                $("#q6").val(),
-                $("#q7").val(),
-                $("#q8").val(),
-                $("#q9").val(),
-                $("#q10").val()
-            ]
-        }
-    })
-
-</script>

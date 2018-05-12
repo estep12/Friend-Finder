@@ -8,7 +8,13 @@ app.get("/api/friends", function(req, res){
 });
 
 app.post("/api/friends", function(req, res){
-    var newFriend = req.body
-});
+    var userData = req.body;
+    console.log(req.body);
 
+    
+
+    friendsData.push(userData);
+    res.json(friendsData);
+    
+})
 }
