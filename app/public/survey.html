@@ -26,7 +26,7 @@
             <strong>Question 1</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q1">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -39,7 +39,7 @@
             <strong>Question 2</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q2">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -52,7 +52,7 @@
             <strong>Question 3</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q3">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -65,7 +65,7 @@
             <strong>Question 4</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q4">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -78,7 +78,7 @@
             <strong>Question 5</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q5">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -91,7 +91,7 @@
             <strong>Question 6</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q6">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -104,7 +104,7 @@
             <strong>Question 7</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q7">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -117,7 +117,7 @@
             <strong>Question 8</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q8">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -130,7 +130,7 @@
             <strong>Question 9</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q9">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -143,7 +143,7 @@
             <strong>Question 10</strong>
         </h3>
         <h4>Some Question</h4>
-        <select class="chosen-select" id="q1">
+        <select class="form-control" id="q10">
             <option value=>Select an Option</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -151,8 +151,52 @@
             <option value="4">4</option>
             <option value="5">5 (Strongly Agree)</option>
         </select>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
+            Submit
+        </button>
+
+        <hr>
+
+        <footer class="footer">
+            <div class="container">
+                <p>
+                    <a href="/api/friends">API Friends List</a> |
+
+                    <a href="https://github.com/estep12/Friend-Finder">GitHub Repo</a>
+                </p>
+            </div>
+        </footer>
     </div>
+
+
+
 
 </body>
 
 </html>
+
+<script type="text/javascript">
+
+    $(".submit").on("click", function(event){
+        event.preventDefault();
+        var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: [
+                $("#q1").val(),
+                $("#q2").val(),
+                $("#q3").val(),
+                $("#q4").val(),
+                $("#q5").val(),
+                $("#q6").val(),
+                $("#q7").val(),
+                $("#q8").val(),
+                $("#q9").val(),
+                $("#q10").val()
+            ]
+        }
+    })
+
+</script>
