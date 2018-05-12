@@ -9,12 +9,13 @@ app.get("/api/friends", function(req, res){
 
 app.post("/api/friends", function(req, res){
     var userData = req.body;
-    console.log(req.body);
+    console.log(userData);
 
-    
+
 
     friendsData.push(userData);
     res.json(friendsData);
     
-})
+
+});
 }
