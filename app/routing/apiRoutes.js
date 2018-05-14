@@ -16,12 +16,10 @@ app.post("/api/friends", function(req, res){
         friendDiff: 1000
     }
     
-    console.log(req.body);
+    // console.log(req.body);
     
     var friendScore = userData.scores
-    
-    
-    
+
     for(i = 0; i<userData.length; i++){
         console.log(friendsData[i]);
         
